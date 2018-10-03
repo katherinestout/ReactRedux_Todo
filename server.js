@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+//const bodyParser = require('body-parser');
+
+//Routes
+const lists = require('./routes/api/lists');
+const newlist = require('./routes/api/newlist');
 
 //DB configs
 //Getting access to the database
@@ -13,7 +17,9 @@ mongoose.connect(db).then(() => console.log('MongoDB Connected!'))
 
 app.get('/', (req, res) => res.send('Hello'));
 
-
+//use routes
+app.use('/api/lists', lists);
+app.use('/api/newlist', newlist);
 
 const port = process.env.PORT || 5000;
 
