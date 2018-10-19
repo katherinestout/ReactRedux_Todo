@@ -17,7 +17,8 @@ class Center extends Component {
          <div>
             <ul>{
               this.props.history.map(el => (
-                <li key={el.id}>
+                <li className="listItems" key={el.id} 
+                onClick={() => this.props.onDelItem(el.id)}>
                   {el.age}
                 </li>
               ))
@@ -41,9 +42,11 @@ class Center extends Component {
   const mapDispatchToProps = dispatch => {
     return {
       onAgeUp: () => dispatch({type: 'AGE_UP', value: 1}),
-      onAgeDown: () => dispatch({type: 'AGE_DOWN', value: 1})
+      onAgeDown: () => dispatch({type: 'AGE_DOWN', value: 1}),
+      onDelItem: (id) => dispatch({type: 'DEL_ITEM', key: id })
     };
   };
+  //onDelItem will dispatch the key as a payload
   
   
   export default connect(

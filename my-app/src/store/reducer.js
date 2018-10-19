@@ -23,6 +23,12 @@ const reducer = (state =initialState , action) => {
             history: state.history.concat({id:Math.random(), age: state.age - action.value})
         };
      break;
+     case "DEL_ITEM":
+        return{
+            ...state,
+            history: state.history.filter(el => el.id !== action.key)
+        }
+        break;
     }
 
     return newState;
